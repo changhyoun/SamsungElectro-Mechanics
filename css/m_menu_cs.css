@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+*{margin: 0; padding : 0;}
+a{text-decoration: none; color: #333;}
+ul,li{list-style: none;}
+h1,h2,h3,h4,h5,p{  font-family: "Noto Sans KR", sans-serif;}
+
+
+#container{width: 100%; max-width: 1920px; height: 100%; }
+#nav{width: 100%; height: 70px; display: flex; align-items: center; flex-direction: row; justify-content: space-between;}
+    
+
+    #nav #nav_left{width: 15%; height: 100%; display: flex; align-items: center; justify-content: center;}
+        #nav #nav_left span{font-size: 2em;  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);}
+    #nav #nav_center{width: 50%; height: 100%; display: flex; align-items: center; justify-content: center;}
+    #nav #nav_right{width: 15%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #043285;}
+        #nav #nav_right span{font-size: 2em; color: #f5f5f5; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);}
+#lag{width: 100%; height: 60px;background-color: #021942; display: flex; align-items: center; justify-content: center;}
+    #lag #lag_warp{width: 50%; height: 80%; display: flex; align-items: center; flex-direction: row; justify-content: space-around;}
+        #lag #lag_warp p{width: 33.3%; height: 50%; display: flex; align-items: center; justify-content: center; border-right: 1px solid #ccc; color: #f5f5f5; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);}
+        #lag #lag_warp p:nth-of-type(3){border: 0px;}
+
+.accordion {
+width: 100%;
+height: 90%; /* 전체 높이를 90%로 설정 */
+overflow: hidden;
+}
+
+.accordion .accordion-item {
+background-color: #f4f4f4;
+border-bottom: 1px solid #ccc;
+}
+/* 기업정보 메뉴 안 이미지 */
+.accordion-panel .nested-accordion-item .online{height: 200px !important; display: flex !important; align-items: center !important; justify-content: center !important; }
+.accordion-panel .nested-accordion-item .online img{width: 65%; height: 100%; object-fit: contain;}
+
+
+
+
+.accordion .accordion-item .accordion-header {
+
+    background-color: white;
+border-bottom: 1px solid #CCCCCC;
+padding: 10px 20px;
+cursor: pointer;
+height: 60px;
+display: flex; flex-direction: row;
+align-items: center; justify-content: space-between;
+}
+
+.accordion .accordion-item .accordion-header .accordion-panel {
+
+display: none;
+}
+
+/* 내부 아코디언 스타일 */
+.accordion-panel .nested-accordion-item {
+background-color: #ddd;
+border-bottom: 1px solid #ccc;
+}
+
+.accordion-panel .nested-accordion-item .nested-accordion-header {
+background-color: #f3f3f3;
+height: 40px;
+display: flex; flex-direction: row;
+align-items: center; justify-content: space-between;
+padding: 10px 20px;
+cursor: pointer;
+}
+
+
+.nested-accordion-panel {
+
+display: none;
+BACKGROUND: #e8e8e8;
+}
+
+
+.nested-accordion-panel ul {
+    display: flex;
+    width: 90%; /* 너비를 90%로 조정합니다. */
+    height: 90%; /* 높이를 90%로 조정합니다. */
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 10%; /* 왼쪽 여백을 10%로 조정합니다. */
+}
+
+.nested-accordion-panel li {
+    width: 50%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none; /* 기본 리스트 스타일을 제거합니다. */
+}
+
+.nested-accordion-panel li::before {
+    content: "ㆍ"; /* 대신 직접 마크를 추가합니다. */
+    margin-right: 5px; /* 마크와 텍스트 사이의 간격을 조정합니다. */
+}
