@@ -17,4 +17,4 @@
 ---
 
 ## 5. 설명
-- **설명:** 해당 프로젝트 SamsungElectro-Mechanics / 삼성전기는 포트폴리오용으로 메인페이지를 클론 코딩을한 페이지입니다.<br/>페이지 링크 : https://changhyoun.github.io/SamsungElectro-Mechanics 
+- **설명:** 해당 프로젝트 SamsungElectro-Mechanics / 삼성전기는<br/>포트폴리오용으로 메인페이지를 클론 코딩을한 페이지입니다.<br/>페이지 링크 : https://changhyoun.github.io/SamsungElectro-Mechanics 
