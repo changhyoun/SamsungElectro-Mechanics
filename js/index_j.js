@@ -204,10 +204,6 @@ $(function(){
                 "pointer-events": "none",
                 "backgrond-color": "#111"
             });
-            $("#menu, #nav #logo").css({
-                "filter": "blur(5px)",
-    
-            });
             $("#nav").css("background-color", "white"); 
             $("#menu h1 a").css("color", "black");
             $("#logo img").attr("src", "img/logo.svg"); 
@@ -256,11 +252,7 @@ $(function(){
     // 클릭 이벤트 핸들러
     $('#mn_rt span:nth-of-type(2)').click(function(event) {
       event.stopPropagation(); // 이벤트 전파 중지
-      if (isNavVisible) {
-        nav.style.top = "-" + navHeight + "px"; // 네비게이션 바 숨김
-      } else {
-        nav.style.top = "0"; // 네비게이션 바 표시
-      }
+      
       isNavVisible = !isNavVisible; // 네비게이션 바 상태 토글
     });
     
@@ -268,25 +260,12 @@ $(function(){
     window.addEventListener("scroll", function() {
       var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
-      if (!isNavVisible) {
-        if (scrollTop > lastScrollTop) {
-          // 스크롤을 내릴 때
-          nav.style.top = "-" + navHeight + "px"; // 네비게이션 바 숨김
-        } else {
-          // 스크롤을 올릴 때
-          nav.style.top = "0"; // 네비게이션 바 표시
-        }
-      }
-    
       lastScrollTop = scrollTop;
     });
     
     // #container 클릭 이벤트 핸들러
     $('#container').click(function() {
-      if (isNavVisible) {
-        nav.style.top = "-" + navHeight + "px"; // 네비게이션 바 숨김
-        isNavVisible = false; // 네비게이션 바 상태 토글
-      }
+      
      $('.zoom_menu_pc').hide(); 
      $("#mn_rt span:nth-of-type(2").html(' <span class="material-symbols-rounded">search </span>');
      $("#mn_rt span:nth-of-type(2)").css({"background-color":"transparent"});
@@ -563,8 +542,75 @@ $(function(){
     
             }
         }
+  
     });
 
+    $(document).ready(function() {
+        const $subElements = $('.sub');  // jQuery로 모든 .sub 요소 선택
+        const $zoomMenuPcElements = $('.zoom_menu_pc');  // jQuery로 모든 .zoom_menu_pc 요소 선택
+    
+        function toggleScroll(disable) {
+            if (disable) {
+                $('body').css('overflow', 'hidden');  // 스크롤 비활성화
+            } else {
+                $('body').css('overflow', '');  // 스크롤 활성화
+            }
+        }
+    
+        // 스크롤 비활성화 조건을 체크하는 함수
+        function checkScrollCondition() {
+            let disableScroll = false;
+    
+            // .sub 중 하나라도 display: flex면 스크롤 비활성화
+            $subElements.each(function() {
+                if ($(this).css('display') === 'flex') {
+                    disableScroll = true;
+                }
+            });
+    
+            // .zoom_menu_pc 중 하나라도 display: flex면 스크롤 비활성화
+            $zoomMenuPcElements.each(function() {
+                if ($(this).css('display') === 'flex') {
+                    disableScroll = true;
+                }
+            });
+    
+            // 스크롤을 비활성화하거나 활성화
+            toggleScroll(disableScroll);
+        }
+    
+        // 모든 .sub 요소에 대해 MutationObserver 적용
+        $subElements.each(function() {
+            const $subElement = $(this);  // 현재 .sub 요소
+    
+            // 초기 display 값 확인
+            console.log("Initial display:", $subElement.css('display'));
+    
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    checkScrollCondition();  // 스크롤 조건 체크
+                });
+            });
+    
+            // 각 .sub 요소의 속성 변화를 감시
+            observer.observe($subElement[0], { attributes: true, attributeFilter: ['style'] });
+        });
+    
+        // 모든 .zoom_menu_pc 요소에 대해 MutationObserver 적용
+        $zoomMenuPcElements.each(function() {
+            const $zoomMenuPcElement = $(this);  // 현재 .zoom_menu_pc 요소
+    
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    checkScrollCondition();  // 스크롤 조건 체크
+                });
+            });
+    
+            // 각 .zoom_menu_pc 요소의 속성 변화를 감시
+            observer.observe($zoomMenuPcElement[0], { attributes: true, attributeFilter: ['style'] });
+        });
+    });
+    
     
  
     
